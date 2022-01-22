@@ -207,7 +207,40 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct() {}
+function greatestProduct(matrixArr) {
+
+  let biggestHorizontal = 0;
+  let biggestVertical = 0;
+
+  for(let rowIndex = 0; rowIndex < matrixArr.length; rowIndex++){
+    
+    for(let columnIndex = 0; columnIndex < matrixArr[rowIndex].length; columnIndex++){
+      
+      if(columnIndex < 17){
+        biggestHorizontal = matrixArr[rowIndex][columnIndex] + matrixArr[rowIndex][columnIndex + 1] + matrixArr[rowIndex][columnIndex + 2] + matrixArr[rowIndex][columnIndex + 3];
+        if(biggestHorizontal < matrixArr[rowIndex][16] + matrixArr[rowIndex][17] + matrixArr[rowIndex][18] + matrixArr[rowIndex][19]){
+          biggestHorizontal = matrixArr[rowIndex][16] + matrixArr[rowIndex][17] + matrixArr[rowIndex][18] + matrixArr[rowIndex][19];;
+        }
+      }
+    };
+  };
+
+  for(let rowIndex = 0; rowIndex < matrixArr.length; rowIndex++){
+    
+    for(let columnIndex = 0; columnIndex < matrixArr[rowIndex].length; columnIndex++){
+      
+      if(rowIndex < 17){
+        biggestVertical = matrixArr[rowIndex][columnIndex] + matrixArr[rowIndex + 1][columnIndex] + matrixArr[rowIndex + 2][columnIndex] + matrixArr[rowIndex + 3][columnIndex];
+        if(biggestVertical < matrixArr[16][columnIndex] + matrixArr[17][columnIndex] + matrixArr[18][columnIndex] + matrixArr[19][columnIndex]){
+          biggestVertical = matrixArr[16][columnIndex] + matrixArr[17][columnIndex] + matrixArr[18][columnIndex] + matrixArr[19][columnIndex];
+        }
+      }
+    };
+  };
+
+  if(biggestHorizontal > biggestVertical) return biggestHorizontal;
+  else return biggestVertical;
+};
 
 
 
