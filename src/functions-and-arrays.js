@@ -212,29 +212,13 @@ function greatestProduct(matrixArr) {
   let biggestHorizontal = 0;
   let biggestVertical = 0;
 
-  for(let rowIndex = 0; rowIndex < matrixArr.length; rowIndex++){
+  for(let rowIndex = 0; rowIndex < matrixArr.length - 3; rowIndex++){
     
-    for(let columnIndex = 0; columnIndex < matrixArr[rowIndex].length; columnIndex++){
+    for(let columnIndex = 0; columnIndex < matrixArr[rowIndex].length - 3; columnIndex++){
       
-      if(columnIndex < 17){
-        biggestHorizontal = matrixArr[rowIndex][columnIndex] + matrixArr[rowIndex][columnIndex + 1] + matrixArr[rowIndex][columnIndex + 2] + matrixArr[rowIndex][columnIndex + 3];
-        if(biggestHorizontal < matrixArr[rowIndex][16] + matrixArr[rowIndex][17] + matrixArr[rowIndex][18] + matrixArr[rowIndex][19]){
-          biggestHorizontal = matrixArr[rowIndex][16] + matrixArr[rowIndex][17] + matrixArr[rowIndex][18] + matrixArr[rowIndex][19];;
-        }
-      }
-    };
-  };
+      biggestHorizontal = matrixArr[rowIndex][columnIndex] * matrixArr[rowIndex][columnIndex + 1] * matrixArr[rowIndex][columnIndex + 2] * matrixArr[rowIndex][columnIndex + 3];
 
-  for(let rowIndex = 0; rowIndex < matrixArr.length; rowIndex++){
-    
-    for(let columnIndex = 0; columnIndex < matrixArr[rowIndex].length; columnIndex++){
-      
-      if(rowIndex < 17){
-        biggestVertical = matrixArr[rowIndex][columnIndex] + matrixArr[rowIndex + 1][columnIndex] + matrixArr[rowIndex + 2][columnIndex] + matrixArr[rowIndex + 3][columnIndex];
-        if(biggestVertical < matrixArr[16][columnIndex] + matrixArr[17][columnIndex] + matrixArr[18][columnIndex] + matrixArr[19][columnIndex]){
-          biggestVertical = matrixArr[16][columnIndex] + matrixArr[17][columnIndex] + matrixArr[18][columnIndex] + matrixArr[19][columnIndex];
-        }
-      }
+      biggestVertical = matrixArr[rowIndex][columnIndex] * matrixArr[rowIndex + 1][columnIndex] * matrixArr[rowIndex + 2][columnIndex] * matrixArr[rowIndex + 3][columnIndex];
     };
   };
 
@@ -242,7 +226,34 @@ function greatestProduct(matrixArr) {
   else return biggestVertical;
 };
 
+// Iteration #8.1: Bonus
 
+function greatestProductOfDiagonals(matrixArr) {
+
+  let biggestRightDiagonal = 0;
+  let biggestLeftDiagonal = 0;
+
+  for(let rowIndex = 0; rowIndex < matrixArr.length - 3; rowIndex++){
+    
+    for(let columnIndex = 0; columnIndex < matrixArr[rowIndex].length - 3; columnIndex++){
+      
+      biggestRightDiagonal = matrixArr[rowIndex][columnIndex] * matrixArr[rowIndex + 1][columnIndex + 1] * matrixArr[rowIndex + 2][columnIndex + 2] * matrixArr[rowIndex + 3][columnIndex + 3];
+
+    };
+  };
+
+  for(let rowIndex = 3; rowIndex < matrixArr.length; rowIndex++){
+    
+    for(let columnIndex = 0; columnIndex < matrixArr[rowIndex].length - 3; columnIndex++){
+      
+      biggestLeftDiagonal = matrixArr[rowIndex][columnIndex] * matrixArr[rowIndex - 1][columnIndex + 1] * matrixArr[rowIndex - 2][columnIndex + 2] * matrixArr[rowIndex - 3][columnIndex + 3];
+
+    };
+  };
+
+  if(biggestRightDiagonal > biggestLeftDiagonal) return biggestRightDiagonal;
+  else return biggestLeftDiagonal;
+};
 
 
 // The following is required to make unit tests work.
